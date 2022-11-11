@@ -1,0 +1,36 @@
+<mat-progress-bar *ngIf="loading" color="primary" mode="indeterminate"></mat-progress-bar>
+<mat-toolbar color="primary" class="mat-elevation-z8">
+  <a class="example-sidenav-toggle" routerLink="/first-page" (click)="opened=!opened" mat-icon-button>
+    <mat-icon color="secondary">menu</mat-icon>
+  </a>
+  <h6>{{title}}</h6>
+</mat-toolbar>
+<mat-sidenav-container>
+  <mat-sidenav [(opened)]="opened" mode="side" class="mat-elevation-z2">
+    <mat-card class="mat-elevation-z0">
+      <mat-card-header>
+        <img title="hello" mat-card-avatar
+          src="https://www.business2community.com/wp-content/uploads/2017/08/blank-profile-picture-973460_640.png" />
+        <mat-card-title class="font-16">
+          Aung Naing Oo
+        </mat-card-title>
+        <mat-card-subtitle>
+          Hello
+        </mat-card-subtitle>
+      </mat-card-header>
+    </mat-card>
+    <mat-nav-list>
+      <a mat-list-item class="font-14" routerLink="/first-page" routerLinkActive="active"><span
+          class="material-symbols-outlined nav-sidebar-menu-margin">dashboard</span>Dashboard</a>
+      <a mat-list-item class="font-14" routerLink="/second-page" routerLinkActive="active"><span
+          class="material-symbols-outlined nav-sidebar-menu-margin">layers</span> Masters</a>
+      <a mat-list-item class="font-14" routerLink="/users" routerLinkActive="active"><span
+          class="material-symbols-outlined nav-sidebar-menu-margin">people</span> Users</a>
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <div class="main-content" role="main">
+      <router-outlet></router-outlet>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>

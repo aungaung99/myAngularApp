@@ -1,0 +1,53 @@
+.example-spacer {
+    flex: 1 1 auto;
+}
+
+.main-content {
+    margin: 1.5%;
+}
+
+.nav-sidebar-menu-margin {
+    margin-left: 8px;
+    margin-right: 10px;
+}
+
+.font-14 {
+    font-size: 14px;
+}
+
+.font-16 {
+    font-size: 16px;
+}
+
+.font-18 {
+    font-size: 18px;
+}
+
+.font-20 {
+    font-size: 20px;
+}
+
+mat-progress-bar{
+    position: absolute;
+}
+
+mat-toolbar {
+    height: 50px;
+}
+
+.mat-list-base {
+    padding-top: 0;
+}
+
+mat-sidenav-container {
+    height: calc(205vh - 113vh);
+}
+
+mat-sidenav {
+    width: 250px;
+    background-color: #fcfcfc;
+}
+
+a.mat-list-item.active {
+    color: #673ab7;
+}
