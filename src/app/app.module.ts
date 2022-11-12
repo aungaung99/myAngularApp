@@ -12,7 +12,7 @@ import { MatSidenavModule } from "@angular/material/sidenav";
 import { MatIconModule } from "@angular/material/icon";
 import { MatListModule } from "@angular/material/list";
 import { MatTable, MatTableModule } from "@angular/material/table";
-
+import { MatSortModule } from "@angular/material/sort";
 import { FirstPageComponent } from './first-page/first-page.component';
 import { SecondPageComponent } from './second-page/second-page.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
@@ -39,7 +39,8 @@ import { UsersService } from './master/users/users.service'
     MatIconModule,
     MatListModule,
     HttpClientModule,
-    MatTableModule
+    MatTableModule,
+    MatSortModule
   ],
   providers: [UsersService],
   bootstrap: [AppComponent]
