@@ -6,8 +6,8 @@ table>th {
     background: #ddd;
 }
 
-.example-full-width {
-    width: 200px;
+input {
+    font-size: 14px;
 }
 
 .example-spacer {
