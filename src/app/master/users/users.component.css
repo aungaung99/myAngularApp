@@ -2,8 +2,16 @@ table {
     width: 100%;
 }
 
-table > th{
+table>th {
     background: #ddd;
+}
+
+.example-full-width {
+    width: 200px;
+}
+
+.example-spacer {
+    flex: 1 1 auto;
 }
 
 mat-progress-bar.top {

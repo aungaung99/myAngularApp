@@ -4,32 +4,38 @@ import { UsersService } from './users.service';
 import { MatSort, Sort } from "@angular/material/sort";
 import { LiveAnnouncer } from '@angular/cdk/a11y';
 import { MatTableDataSource } from "@angular/material/table";
+import { MatPaginator } from '@angular/material/paginator';
+
 @Component({
   selector: 'app-users',
   templateUrl: './users.component.html',
   styleUrls: ['./users.component.css']
 })
+
 export class UsersComponent implements OnInit, AfterViewInit {
 
   loading = true;
   dataSource = new MatTableDataSource<Users>();
   displayedColumns: string[] = ['id', 'name', 'username'];
 
-  constructor(private user: UsersService, private _liveAnnouncer: LiveAnnouncer) {}
+  constructor(private user: UsersService, private _liveAnnouncer: LiveAnnouncer) { }
+
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
+  @ViewChild(MatSort) sort!: MatSort;
 
   ngOnInit() {
     this.user.getData().subscribe(data => {
       this.dataSource = new MatTableDataSource<Users>(data);
       this.loading = false;
       this.dataSource.sort = this.sort;
+      this.dataSource.paginator = this.paginator;
     });
   }
 
   ngAfterViewInit() {
     this.dataSource.sort = this.sort;
+    this.dataSource.paginator = this.paginator;
   }
-
-  @ViewChild(MatSort) sort!: MatSort;
 
   /** Announce the change in sort state for assistive technology. */
   announceSortChange(sortState: Sort) {
