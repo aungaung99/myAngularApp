@@ -11,6 +11,14 @@
     margin-right: 10px;
 }
 
+mat-expansion-panel-header {
+    padding-left: 14px;
+}
+
+mat-expansion-panel-header.mat-expanded {
+    height: 47.99px;
+}
+
 .font-14 {
     font-size: 14px;
 }
@@ -27,7 +35,7 @@
     font-size: 20px;
 }
 
-mat-progress-bar{
+mat-progress-bar {
     position: absolute;
 }
 

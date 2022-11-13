@@ -4,10 +4,13 @@
     <mat-icon color="secondary">menu</mat-icon>
   </a>
   <h6>{{title}}</h6>
+  <div class="flex-grow-1"></div>
+ 
 </mat-toolbar>
-<mat-sidenav-container>
-  <mat-sidenav [(opened)]="opened" mode="side" class="mat-elevation-z2">
-    <mat-card class="mat-elevation-z0">
+<app-breadcrumb></app-breadcrumb>
+<mat-sidenav-container class="bg-light">
+  <mat-sidenav [(opened)]="opened" mode="side" class="mat-elevation-z2 bg-white">
+    <mat-card class="mat-elevation-z0 px-3 pb-0 bg-light rounded-0 primary">
       <mat-card-header>
         <img title="hello" mat-card-avatar
           src="https://www.business2community.com/wp-content/uploads/2017/08/blank-profile-picture-973460_640.png" />
@@ -22,10 +25,19 @@
     <mat-nav-list>
       <a mat-list-item class="font-14" routerLink="/dashboard" routerLinkActive="active"><span
           class="material-symbols-outlined nav-sidebar-menu-margin">dashboard</span>Dashboard</a>
-      <a mat-list-item class="font-14" routerLink="/second-page" routerLinkActive="active"><span
-          class="material-symbols-outlined nav-sidebar-menu-margin">layers</span> Masters</a>
       <a mat-list-item class="font-14" routerLink="/users" routerLinkActive="active"><span
           class="material-symbols-outlined nav-sidebar-menu-margin">people</span> Users</a>
+      <mat-accordion class="mat-elevation-z0">
+        <mat-expansion-panel class="mat-elevation-z0 bg-white rounded-0" [expanded]="masterToggleOpened">
+          <mat-expansion-panel-header>
+            <mat-panel-title class="font-14">
+              <span class="material-symbols-outlined nav-sidebar-menu-margin">layers</span>Master
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <a mat-list-item class="font-14" routerLink="/master/states" routerLinkActive="active">States</a>
+          <a mat-list-item class="font-14" routerLink="/users" routerLinkActive="active">Users</a>
+        </mat-expansion-panel>
+      </mat-accordion>
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>

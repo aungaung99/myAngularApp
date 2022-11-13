@@ -16,15 +16,23 @@ import { MatPaginatorModule } from "@angular/material/paginator";
 import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatInputModule } from "@angular/material/input";
 import { MatSortModule } from "@angular/material/sort";
+import { MatExpansionModule } from "@angular/material/expansion";
+
+import { BreadcrumbModule } from "primeng/breadcrumb";
+
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { UsersComponent } from './master/users/users.component';
-import { UsersService } from './master/users/users.service'
+import { UsersService } from './master/users/users.service';
+import { StatesComponent } from './master/states/states.component';
+import { BreadcrumbComponent } from './breadcrumb/breadcrumb.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     DashboardComponent,
     UsersComponent,
+    StatesComponent,
+    BreadcrumbComponent,
   ],
   imports: [
     BrowserModule,
@@ -42,7 +50,9 @@ import { UsersService } from './master/users/users.service'
     MatSortModule,
     MatPaginatorModule,
     MatFormFieldModule,
-    MatInputModule
+    MatInputModule,
+    MatExpansionModule,
+    BreadcrumbModule
   ],
   providers: [UsersService],
   bootstrap: [AppComponent]
