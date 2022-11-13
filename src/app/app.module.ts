@@ -11,10 +11,11 @@ import { MatCardModule } from "@angular/material/card";
 import { MatSidenavModule } from "@angular/material/sidenav";
 import { MatIconModule } from "@angular/material/icon";
 import { MatListModule } from "@angular/material/list";
-import { MatTable, MatTableModule } from "@angular/material/table";
+import { MatTableModule } from "@angular/material/table";
+import { MatPaginatorModule } from "@angular/material/paginator";
+import { MatFormFieldModule } from "@angular/material/form-field";
+import { MatInputModule } from "@angular/material/input";
 import { MatSortModule } from "@angular/material/sort";
-import { FirstPageComponent } from './first-page/first-page.component';
-import { SecondPageComponent } from './second-page/second-page.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { UsersComponent } from './master/users/users.component';
 import { UsersService } from './master/users/users.service'
@@ -22,8 +23,6 @@ import { UsersService } from './master/users/users.service'
 @NgModule({
   declarations: [
     AppComponent,
-    FirstPageComponent,
-    SecondPageComponent,
     DashboardComponent,
     UsersComponent,
   ],
@@ -40,11 +39,15 @@ import { UsersService } from './master/users/users.service'
     MatListModule,
     HttpClientModule,
     MatTableModule,
-    MatSortModule
+    MatSortModule,
+    MatPaginatorModule,
+    MatFormFieldModule,
+    MatInputModule
   ],
   providers: [UsersService],
   bootstrap: [AppComponent]
 })
+
 
 
 export class AppModule { }
