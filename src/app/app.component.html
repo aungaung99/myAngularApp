@@ -7,9 +7,9 @@
   <div class="flex-grow-1"></div>
  
 </mat-toolbar>
-<app-breadcrumb></app-breadcrumb>
+
 <mat-sidenav-container class="bg-light">
-  <mat-sidenav [(opened)]="opened" mode="side" class="mat-elevation-z2 bg-white">
+  <mat-sidenav [(opened)]="opened" mode="side" class="mat-elevation-z0 shadow-sm bg-white">
     <mat-card class="mat-elevation-z0 px-3 pb-0 bg-light rounded-0 primary">
       <mat-card-header>
         <img title="hello" mat-card-avatar
@@ -42,6 +42,7 @@
   </mat-sidenav>
   <mat-sidenav-content>
     <div class="main-content" role="main">
+      <app-breadcrumb></app-breadcrumb>
       <router-outlet></router-outlet>
     </div>
   </mat-sidenav-content>
