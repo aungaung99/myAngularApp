@@ -41,9 +41,6 @@ export class BreadcrumbComponent implements OnInit {
       if (label !== undefined || label !== null) {
         breadcrumbs.push({ label, url });
       }
-
-      console.log(breadcrumbs);
-
       return this.createBreadcrumbs(child, url, breadcrumbs);
     }
 
