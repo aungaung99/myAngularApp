@@ -1,1 +1,21 @@
-<p>states works!</p>
+<mat-card class="mat-elevation-z0 shadow-sm">
+    <mat-card-content>
+        <!-- <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="table table-hover">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                </tr>
+            </thead>
+            <tbody *ngIf="comments.length != 0">
+                <tr *ngFor="let comment of comments">
+                    <td>{{comment.id}}</td>
+                    <td>{{comment.name}}</td>
+                    <td>{{comment.email}}</td>
+                </tr>
+            </tbody>
+        </table> -->
+        <table datatable [dtOptions]="dtOptions"></table>
+    </mat-card-content>
+</mat-card>
