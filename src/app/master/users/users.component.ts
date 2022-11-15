@@ -5,6 +5,7 @@ import { MatSort, Sort } from "@angular/material/sort";
 import { LiveAnnouncer } from '@angular/cdk/a11y';
 import { MatTableDataSource } from "@angular/material/table";
 import { MatPaginator } from '@angular/material/paginator';
+import { SelectionModel } from '@angular/cdk/collections';
 
 @Component({
   selector: 'app-users',
@@ -16,8 +17,8 @@ export class UsersComponent implements OnInit, AfterViewInit {
 
   loading = true;
   dataSource = new MatTableDataSource<Users>();
-  displayedColumns: string[] = ['id', 'name', 'username'];
-
+  displayedColumns: string[] = ['select','id', 'name', 'username'];
+  selection = new SelectionModel<Users>(true, []);
   constructor(private user: UsersService, private _liveAnnouncer: LiveAnnouncer) { }
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
@@ -51,13 +52,24 @@ export class UsersComponent implements OnInit, AfterViewInit {
     }
   }
 
-  applyFilter(event: Event){
-    const filterValue=(event.target as HTMLInputElement).value;
-    this.dataSource.filter=filterValue.trim().toLowerCase()
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase()
 
-    if(this.dataSource.paginator){
+    if (this.dataSource.paginator) {
       this.dataSource.paginator.firstPage()
     }
+  }
+
+  isAllSelected() {
+    const numSelected = this.selection.selected.length;
+    const numRows = this.dataSource.data.length;
+    return numSelected === numRows;
+  }
+
+  masterToggle() {
+    this.selection.clear() ?
+      this.selection.clear() : this.dataSource.data.forEach(row => this.selection.select(row));
   }
 
 }

@@ -9,9 +9,23 @@
                 <button type="button" color="primary" mat-flat-button>Excel</button>
             </div>
         </div>
-       
+
         <table mat-table [dataSource]="dataSource" class="mat-elevation-z0" matSort
             (matSortChange)="announceSortChange($event)">
+
+            <ng-container matColumnDef="select">
+                <th mat-header-cell *matHeaderCellDef width="80">
+                    <mat-checkbox color="primary" (change)="$event ? masterToggle() : null"
+                        (change)="selection.hasValue() && isAllSelected()"
+                        [indeterminate]="selection.hasValue() && !isAllSelected()">
+                    </mat-checkbox>
+                </th>
+                <td mat-cell *matCellDef="let row">
+                    <mat-checkbox color="primary" (click)="$event.stopPropagation()" (change)="$event ? selection.toggle(row) : null"
+                        [checked]="selection.isSelected(row)"></mat-checkbox>
+                </td>
+            </ng-container>
+
             <ng-container matColumnDef="id">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header>id</th>
                 <td mat-cell *matCellDef="let element">{{element.id}}</td>
@@ -26,7 +40,7 @@
             </ng-container>
 
             <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-            <tr mat-row *matRowDef="let row; columns:displayedColumns;"></tr>
+            <tr mat-row *matRowDef="let row; columns:displayedColumns;" (click)="selection.toggle(row)"></tr>
         </table>
         <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons
             aria-label="Select page of periodic elements">
