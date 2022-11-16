@@ -5,10 +5,10 @@ import { StatesComponent } from './master/states/states.component';
 import { UsersComponent } from './master/users/users.component';
 const routes: Routes = [
   { path: 'dashboard', data: { breadcrumb: 'dashboard' }, component: DashboardComponent },
-  { path: 'users', data: { breadcrumb: 'users' }, component: UsersComponent },
   {
     path: 'master', data: { breadcrumb: 'master' }, children: [
-      { path: 'states', component: StatesComponent, data: { breadcrumb: 'States' } }
+      { path: 'states', component: StatesComponent, data: { breadcrumb: 'States' } },
+      { path: 'users', component: UsersComponent, data: { breadcrumb: 'Users' } }
     ]
   },
   { path: '', redirectTo: '/dashboard', pathMatch: 'full' }
