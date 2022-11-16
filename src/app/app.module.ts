@@ -18,6 +18,7 @@ import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatInputModule } from "@angular/material/input";
 import { MatSortModule } from "@angular/material/sort";
 import { MatExpansionModule } from "@angular/material/expansion";
+import { MatDialogModule } from "@angular/material/dialog";
 import { DataTablesModule } from "angular-datatables";
 import { BreadcrumbModule } from "primeng/breadcrumb";
 
@@ -26,6 +27,10 @@ import { UsersComponent } from './master/users/users.component';
 import { UsersService } from './master/users/users.service';
 import { StatesComponent } from './master/states/states.component';
 import { BreadcrumbComponent } from './breadcrumb/breadcrumb.component';
+import { UserDialogComponent } from './master/user-dialog/user-dialog.component';
+import { CommentService } from './api/comment.service';
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { ErrorStateMatcher, ShowOnDirtyErrorStateMatcher } from '@angular/material/core';
 
 @NgModule({
   declarations: [
@@ -34,6 +39,7 @@ import { BreadcrumbComponent } from './breadcrumb/breadcrumb.component';
     UsersComponent,
     StatesComponent,
     BreadcrumbComponent,
+    UserDialogComponent,
   ],
   imports: [
     BrowserModule,
@@ -55,9 +61,12 @@ import { BreadcrumbComponent } from './breadcrumb/breadcrumb.component';
     MatFormFieldModule,
     MatInputModule,
     MatExpansionModule,
-    BreadcrumbModule
+    BreadcrumbModule,
+    MatDialogModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
-  providers: [UsersService],
+  providers: [UsersService, CommentService, { provide: ErrorStateMatcher, useClass: ShowOnDirtyErrorStateMatcher }],
   bootstrap: [AppComponent]
 })
 

@@ -1,14 +1,50 @@
 <mat-progress-bar *ngIf="loading" color="primary" mode="indeterminate"></mat-progress-bar>
 <mat-toolbar color="primary" class="mat-elevation-z8">
-  <a class="example-sidenav-toggle" routerLink="/first-page" (click)="opened=!opened" mat-icon-button>
+  <button class="example-sidenav-toggle" (click)="opened=!opened" mat-icon-button>
     <mat-icon color="secondary">menu</mat-icon>
-  </a>
+  </button>
   <h6>{{title}}</h6>
   <div class="flex-grow-1"></div>
  
 </mat-toolbar>
-
-<mat-sidenav-container class="bg-light">
+<mat-drawer-container>
+  <mat-drawer mode="side" [opened]="opened">
+    <mat-card class="mat-elevation-z0 px-3 pb-0 bg-light rounded-0 primary">
+      <mat-card-header>
+        <img title="hello" mat-card-avatar
+          src="https://www.business2community.com/wp-content/uploads/2017/08/blank-profile-picture-973460_640.png" />
+        <mat-card-title class="font-16">
+          Aung Naing Oo
+        </mat-card-title>
+        <mat-card-subtitle>
+          Hello
+        </mat-card-subtitle>
+      </mat-card-header>
+    </mat-card>
+    <mat-nav-list>
+      <a mat-list-item class="font-14" routerLink="/dashboard" routerLinkActive="active"><span
+          class="material-symbols-outlined nav-sidebar-menu-margin">dashboard</span>Dashboard</a>
+      <mat-accordion class="mat-elevation-z0">
+        <mat-expansion-panel class="mat-elevation-z0 bg-white rounded-0" [expanded]="masterToggleOpened">
+          <mat-expansion-panel-header>
+            <mat-panel-title class="font-14">
+              <span class="material-symbols-outlined nav-sidebar-menu-margin">layers</span>Master
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <a mat-list-item class="font-14" routerLink="/master/states" routerLinkActive="active">States</a>
+          <a mat-list-item class="font-14" routerLink="/master/users" routerLinkActive="active">Users</a>
+        </mat-expansion-panel>
+      </mat-accordion>
+    </mat-nav-list>
+  </mat-drawer>
+  <mat-drawer-content>
+    <div class="main-content" role="main">
+      <app-breadcrumb></app-breadcrumb>
+      <router-outlet></router-outlet>
+    </div>
+  </mat-drawer-content>
+</mat-drawer-container>
+<!-- <mat-sidenav-container class="bg-light">
   <mat-sidenav [(opened)]="opened" mode="side" class="mat-elevation-z0 shadow-sm bg-white">
     <mat-card class="mat-elevation-z0 px-3 pb-0 bg-light rounded-0 primary">
       <mat-card-header>
@@ -25,8 +61,6 @@
     <mat-nav-list>
       <a mat-list-item class="font-14" routerLink="/dashboard" routerLinkActive="active"><span
           class="material-symbols-outlined nav-sidebar-menu-margin">dashboard</span>Dashboard</a>
-      <a mat-list-item class="font-14" routerLink="/users" routerLinkActive="active"><span
-          class="material-symbols-outlined nav-sidebar-menu-margin">people</span> Users</a>
       <mat-accordion class="mat-elevation-z0">
         <mat-expansion-panel class="mat-elevation-z0 bg-white rounded-0" [expanded]="masterToggleOpened">
           <mat-expansion-panel-header>
@@ -35,7 +69,7 @@
             </mat-panel-title>
           </mat-expansion-panel-header>
           <a mat-list-item class="font-14" routerLink="/master/states" routerLinkActive="active">States</a>
-          <a mat-list-item class="font-14" routerLink="/users" routerLinkActive="active">Users</a>
+          <a mat-list-item class="font-14" routerLink="/master/users" routerLinkActive="active">Users</a>
         </mat-expansion-panel>
       </mat-accordion>
     </mat-nav-list>
@@ -46,4 +80,4 @@
       <router-outlet></router-outlet>
     </div>
   </mat-sidenav-content>
-</mat-sidenav-container>
+</mat-sidenav-container> -->

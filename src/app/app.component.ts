@@ -1,5 +1,5 @@
-import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
-import { MatSidenav } from '@angular/material/sidenav';
+import { AfterContentChecked, AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import { MatDrawer, MatSidenav } from '@angular/material/sidenav';
 import { BreakpointObserver } from "@angular/cdk/layout";
 import { Event, NavigationCancel, NavigationError, NavigationEnd, NavigationStart, Router, ActivatedRoute } from "@angular/router";
 
@@ -14,8 +14,9 @@ export interface MenuItem {
   styleUrls: ['./app.component.css']
 })
 
-export class AppComponent implements AfterViewInit {
+export class AppComponent implements AfterViewInit, AfterContentChecked {
   @ViewChild(MatSidenav) sidenav!: MatSidenav
+  @ViewChild(MatDrawer) drawer!: MatDrawer
   static readonly ROUTE_DATA_BREADCRUMB = 'breadcrumb';
   title = 'myAngularApp';
   loading = false;
@@ -35,15 +36,13 @@ export class AppComponent implements AfterViewInit {
         case event instanceof NavigationEnd:
         case event instanceof NavigationCancel:
         case event instanceof NavigationError: {
-          // setTimeout(() => {
-          //   this.loading = false;
-          // }, 1000);
+
           this.loading = false;
 
           const urlPath = window.location.pathname;
-
-          switch (urlPath) {
-            case "/master/states":
+          let str = urlPath.split('/')[1].toString();
+          switch (str) {
+            case "master":
               {
                 this.masterToggleOpened = true;
                 break;
@@ -69,26 +68,33 @@ export class AppComponent implements AfterViewInit {
   ngAfterViewInit() {
     this.observer.observe(['(max-width:800px)']).subscribe((res => {
       if (res.matches) {
-        this.sidenav.mode = 'over';
-        this.sidenav.close();
+        this.opened = false;
+        this.drawer.mode = "over";
+        this.drawer.close();
       }
       else {
-        this.sidenav.mode = 'side';
-        this.sidenav.open();
+        this.opened = true;
+        if (this.drawer.mode == "over") {
+          this.drawer.mode = "side";
+          this.drawer.open();
+        }
       }
     }));
-
+  }
+  ngAfterContentChecked(): void {
     const urlPath = window.location.pathname;
-    switch (urlPath) {
-      case "/master/states":
+    let str = urlPath.split('/')[1].toString();
+    switch (str) {
+      case "master":
         {
           this.masterToggleOpened = true;
           break;
         }
       default: {
+        this.masterToggleOpened = false;
         break;
       }
     }
   }
- 
+
 }
