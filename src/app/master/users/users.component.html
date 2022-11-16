@@ -6,7 +6,9 @@
                 <input class="form-control mb-2" type="text" placeholder="Search" (keyup)="applyFilter($event)" />
             </div>
             <div class="">
-                <button type="button" color="primary" mat-flat-button>Excel</button>
+                <button type="button" color="primary" class="me-2" mat-flat-button
+                    (click)="openDialog('300ms','300ms')">Create</button>
+                <button type="button" color="accent" mat-flat-button>Excel</button>
             </div>
         </div>
 
@@ -21,8 +23,9 @@
                     </mat-checkbox>
                 </th>
                 <td mat-cell *matCellDef="let row">
-                    <mat-checkbox color="primary" (click)="$event.stopPropagation()" (change)="$event ? selection.toggle(row) : null"
-                        [checked]="selection.isSelected(row)"></mat-checkbox>
+                    <mat-checkbox color="primary" (click)="$event.stopPropagation()"
+                        (change)="$event ? selection.toggle(row) : null" [checked]="selection.isSelected(row)">
+                    </mat-checkbox>
                 </td>
             </ng-container>
 
@@ -42,8 +45,7 @@
             <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
             <tr mat-row *matRowDef="let row; columns:displayedColumns;" (click)="selection.toggle(row)"></tr>
         </table>
-        <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons
-            aria-label="Select page of periodic elements">
+        <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons>
         </mat-paginator>
     </mat-card-content>
     <mat-progress-bar *ngIf="loading" class="bottom" color="primary" mode="indeterminate"></mat-progress-bar>
