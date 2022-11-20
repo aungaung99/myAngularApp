@@ -1,20 +1,32 @@
 <h1>Dialog</h1>
-<form class="example-form">
+<form class="example-form needs-validation" [formGroup]="userForm" (ngSubmit)="SaveUser()">
     <div mat-dialg-content>
-        <mat-form-field class="example-full-width" appearance="fill">
-            <mat-label>Email</mat-label>
-            <input type="email" matInput [formControl]="emailFormControl" [errorStateMatcher]="matcher"
-                placeholder="Ex. pat@example.com">
-            <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
-                Please enter a valid email address
-            </mat-error>
-            <mat-error *ngIf="emailFormControl.hasError('required')">
-                Email is <strong>required</strong>
-            </mat-error>
-        </mat-form-field>
+        <div class="mb-3">
+            <label for="id" class="form-label">Id</label>
+            <input class="form-control" type="number" formControlName="id" placeholder="Enter Id...">
+        </div>
+        <div class="mb-3">
+            <label for="name" class="form-label">Name</label>
+            <div class="input-group">
+                <input class="form-control" type="text" formControlName="name" placeholder="Enter Name..."
+                    [ngClass]="{ 'is-invalid': userForm.controls['name'].dirty && userForm.hasError('required','name')}"
+                    cdkFocusInitial>
+            </div>
+            <div *ngIf="userForm.controls['name'].dirty && userForm.hasError('required','name')"
+                class="text-danger text-xs pt-1">Please type name</div>
+        </div>
+        <div class="mb-3">
+            <label for="email" class="form-label">Email</label>
+            <div class="input-group">
+                <input class="form-control" type="email" formControlName="email" placeholder="Enter email"
+                    [ngClass]="{ 'is-invalid': userForm.controls['name'].dirty && userForm.hasError('required','name')}">
+            </div>
+            <div *ngIf="userForm.controls['email'].dirty && userForm.hasError('required','email')"
+                class="text-danger text-sm pt-1">Please type email</div>
+        </div>
     </div>
     <div mat-dialog-actions>
         <button type="button" mat-button mat-dialog-close>No</button>
-        <button type="submit" color="primary" mat-flat-button cdkFocusInitial (click)="onSubmit">Save</button>
+        <button type="submit" color="primary" mat-flat-button>Save</button>
     </div>
 </form>

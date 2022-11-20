@@ -78,7 +78,7 @@ export class UsersComponent implements OnInit, AfterViewInit {
 
   openDialog(enterAnimationDuration: string, exitAnimationDuration: string) {
     this.dialog.open(UserDialogComponent, {
-      width: '20%',
+      width: '30%',
       enterAnimationDuration: enterAnimationDuration,
       exitAnimationDuration: exitAnimationDuration
     });

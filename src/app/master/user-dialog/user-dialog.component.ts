@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroupDirective, NgForm, Validators } from '@angular/forms';
+import { FormControl, FormGroup, FormGroupDirective, NgForm, Validators } from '@angular/forms';
 import { ErrorStateMatcher } from '@angular/material/core';
 import { MatDialogRef } from '@angular/material/dialog';
 
@@ -20,14 +20,37 @@ export class UserDialogComponent implements OnInit {
   nameFormControl = new FormControl('', [Validators.required]);
   matcher = new MyErrorStateMatcher();
 
+  userForm = new FormGroup({
+    id: new FormControl('0'),
+    name: new FormControl('', Validators.compose([Validators.required, Validators.minLength(5)])),
+    email: new FormControl('', Validators.compose([Validators.required, Validators.email]))
+  });
+
   constructor(public dialogRef: MatDialogRef<UserDialogComponent>) { }
 
   ngOnInit(): void {
   }
 
-  onSubmit() {
-    console.log('submit');
-    this.dialogRef.close();
+  SaveUser() {
+    if (this.userForm.valid) {
+      console.log(this.userForm.value, this.userForm.get("name"));
+    }
+    else {
+      console.log('Invalid form');
+      this.validateFormFeild(this.userForm);
+    }
+  }
+
+  private validateFormFeild(formGroup: FormGroup) {
+    Object.keys(formGroup.controls).forEach(field => {
+      const control = formGroup.get(field);
+      if (control instanceof FormControl) {
+        control.markAsDirty({ onlySelf: true });
+      }
+      else if (control instanceof FormGroup) {
+        this.validateFormFeild(control);
+      }
+    });
   }
 
 }
