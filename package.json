@@ -28,6 +28,7 @@
     "datatables.net-select": "^1.5.0",
     "datatables.net-select-dt": "^1.5.0",
     "jquery": "^3.6.0",
+    "node-sass": "^7.0.3",
     "primeng": "^14.2.1",
     "rxjs": "~7.5.0",
     "sass": "^1.56.1",
